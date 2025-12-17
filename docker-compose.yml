@@ -1,0 +1,29 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16
+    container_name: visits-db
+    environment:
+      POSTGRES_DB: visits_db
+      POSTGRES_USER: visits_user
+      POSTGRES_PASSWORD: secret
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  app:
+    build: .
+    container_name: visits-app
+    ports:
+      - "8000:8000"
+    environment:
+      DB_HOST: db
+      DB_PORT: 5432
+      POSTGRES_DB: visits_db
+      POSTGRES_USER: visits_user
+      POSTGRES_PASSWORD: secret
+    depends_on:
+      - db
+
+volumes:
+  pgdata:
