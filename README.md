@@ -16,5 +16,8 @@ docker-compose up -d --build
 curl http://localhost:8000
 ```
 
-Ожидаемый ответ:
-- Hello! I have been visited X times
+## Ожидаемый ответ:
+```bash
+Hello! I have been visited X times
+```
+Проверка проходила на ВМ kali.
